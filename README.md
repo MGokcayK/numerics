@@ -1,7 +1,7 @@
 # Numerics
-Some Numerical Methods approaches applied in Python3.6.5!
+Some Numerical Methods approaches applied in Python3.6.5! 
 
-Curve Fitting: 
+## Curve Fitting: 
     - Linear Regression
     - Multiple Linear Regression
     - Polynomial Regression
@@ -10,7 +10,7 @@ Curve Fitting:
       - Newton Polynomial Interpolation
       - Linear Splines
       
-Integration:
+## Integration:
     - Trapezoid
     - TrapezoidUnequalSegments
     - Simpson's 1/3 == SimpsonOneThird
@@ -19,18 +19,18 @@ Integration:
     - Adaptive Quadrature
     - Two Point Gauss Legendre
 
-Optimization:
+## Optimization:
     - GoldenSection
     - Parabolic Interpolation
     - Newton
 
-Root Find:
+## Root Find:
     - BiSection
     - Newton - Raphson Method
     - Secant 
     - Simpe Fixed-Point Iteration (Just named Iteration)
 
-ODE:
+## ODE:
     - Euler
     - Heun
     - Midpoint
