@@ -3,10 +3,10 @@ Author  : Mehmet Gokcay Kabatas
 Mail    : mgokcaykdev@gmail.com
 Version : 0.1
 Date    : 11/12/2019
-Update  : 16/12/2019
+Update  : 28/05/2020
 Python  : 3.6.5
 
-Update Note : Adding descriptions.
+Update Note : Adding exponential regression.
 
 This script written by @Author for personal usage. 
 
@@ -34,7 +34,7 @@ class LinearRegression():
 
         @Usage :
         ...
-        cf = LineraRegression(xValues, yValues)
+        cf = LinearRegression(xValues, yValues)
         a1, a0 = cf.results()
         error = cf.standartErrorEstimate()
         ...
@@ -349,3 +349,86 @@ class Interpolation():
                 m = (y[ind + 1] - y[ind]) / (x[ind + 1] - x[ind])
                 res = y[ind] + m * (value - x[ind])
                 return res
+
+
+class ExponentialRegression():
+    """
+    This class written for numerical methods for Exponential Regression application. 
+
+    Arguments :
+        -------------
+        xValues = x values of curve fitting data.
+
+        yValues = y values of curve fitting data.
+
+        mode = Type of exponential.
+
+            exp = A*exp(Bx)
+
+            nexp = A*B^(x)
+
+    
+    \n Class has 1 methods. \n
+        - results() : Return of coefficient.
+
+        @Usage :
+        ...
+        cf = ExponentialRegression(xValues, yValues, mode)
+        A, B = cf.results()
+        ...
+
+    """
+    def __init__(self, xValues, yValues, mode='exp'):
+        self._xValues = xValues
+        self._yValues = np.log(yValues)
+        self._mode = mode.lower()
+        self._n = len(xValues)
+        self.__compute()
+
+    def __compute(self):
+        self._sumX = 0 
+        self._sumY = 0
+        self._sumXY = 0
+        self._sumXSq = 0
+        self._sumYSq = 0
+        for itemX, itemY in zip(self._xValues, self._yValues):
+            self._sumX += itemX
+            self._sumY += itemY
+            self._sumXY += itemX * itemY
+            self._sumXSq += itemX ** 2
+            self._sumYSq += itemY ** 2
+
+    def results(self):
+        """
+        This function return coefficient of Exponential Regression.
+
+        Return :
+        --------
+                Return will be two coefficients which are A and B.
+    
+                for mode 'exp' :
+                    
+                    f(x) = A * exp(Bx)
+
+                for mode 'nexp' :
+
+                    f(x) = A * B^(x)
+
+            @Usage :
+            ...
+            cf = ExponentialRegression(xValues, yValues, 'exp')
+            A, B = cf.results()
+            ...
+        """
+        a1 = self._n * self._sumXY - self._sumX * self._sumY
+        a1 /= self._n * self._sumXSq - self._sumX **2
+        a0 = arithmaticMean(self._yValues) - a1 * arithmaticMean(self._xValues)        
+
+        A = np.exp(a0)
+
+        if self._mode == 'exp':
+            B = a1
+        else:
+            B = np.exp(a1)
+
+        return A, B
