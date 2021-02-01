@@ -9,6 +9,7 @@ Some Numerical Methods approaches applied in Python3.6.5!
       - Linear Interpolation
       - Newton Polynomial Interpolation
       - Linear Splines
+      - Exponential regression.
       
 ## Integration:
     - Trapezoid
