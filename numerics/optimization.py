@@ -185,6 +185,7 @@ class OneD():
             ...
         
         """
+        xNext = 0
         for i in range(maxIt):
             xNext = x0 - (der([x0]) / dder([x0]))
             x0 = xNext  

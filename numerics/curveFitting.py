@@ -3,10 +3,10 @@ Author  : Mehmet Gokcay Kabatas
 Mail    : mgokcaykdev@gmail.com
 Version : 0.1
 Date    : 11/12/2019
-Update  : 28/05/2020
+Update  : 01/02/2021
 Python  : 3.6.5
 
-Update Note : Adding exponential regression.
+Update Note : Assign dtype of arrays to np.float64 to handle some overflows.
 
 This script written by @Author for personal usage. 
 
@@ -175,8 +175,8 @@ class PolynomialRegression():
 
     """
     def __init__(self, xValues, yValues, order):
-        self._xValues = np.array(xValues)
-        self._yValues = np.array(yValues)
+        self._xValues = np.array(xValues, dtype=np.float64)
+        self._yValues = np.array(yValues, dtype=np.float64)
         self._n = len(self._yValues)
         self._order = order
         if self._n < order + 1:
@@ -380,7 +380,7 @@ class ExponentialRegression():
     """
     def __init__(self, xValues, yValues, mode='exp'):
         self._xValues = xValues
-        self._yValues = np.log(yValues)
+        self._yValues = np.log(yValues, dtype=np.float64)
         self._mode = mode.lower()
         self._n = len(xValues)
         self.__compute()
